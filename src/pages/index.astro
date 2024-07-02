@@ -1,9 +1,36 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Welcome to Astro.">
+	<header class="fixed top-0 left-0 right-0 text-white z-50" x-data="{ isOpen: false, isAtTop: window.pageYOffset < 50 }" @scroll.window="isAtTop = window.pageYOffset < 50" :class="{ 'bg-transparent': isAtTop && !isOpen, 'bg-[rgb(0,0,100)] shadow-lg': !isAtTop || isOpen }">
+		<div class="md:container mx-auto px-2">
+			<div class="flex justify-between md:flex-row flex-col md:items-center py-2">
+				<div class="flex justify-between items-center">
+					<div class="text-2xl">Logo</div>
+					<div class="md:hidden" @click="isOpen = !isOpen">
+						<img src="/menu.svg" alt="Menu icon" x-show="!isOpen">
+						<img src="/close.svg" alt="Close icon" x-show="isOpen">
+					</div>
+				</div>
+				<nav class="md:order-none order-last md:flex-row flex-col md:gap-8 gap-1" :class="{ 'md:flex hidden': !isOpen, 'flex': isOpen }">
+					<div>Option 1</div>
+					<div>Option 2</div>
+					<div>Option 3</div>
+				</nav>
+				<div :class="{ 'hidden md:block': !isOpen, 'block': isOpen }">Languages</div>
+			</div>
+		</div>
+	</header>
 	<main>
-		Hello
+		<div class="relative bg-black/40 text-white h-[100vh]">
+			<video muted loop autoplay class="absolute object-cover -z-10 w-full h-full">
+				<source src="/bg.mp4" type="video/mp4">
+			</video>
+			<div class="h-full w-full grid place-items-center">
+				<div>We are eSports</div>
+			</div>
+		</div>
+		{Array(100).fill(0).map((_, i) => <div>test {i + 1}</div>)}
 	</main>
 </Layout>
