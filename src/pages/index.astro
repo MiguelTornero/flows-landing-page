@@ -3,7 +3,7 @@ import Layout from '../layouts/Layout.astro'
 ---
 
 <Layout title="Welcome to Astro.">
-	<header class="fixed top-0 left-0 right-0 text-white z-50" x-data="{ isOpen: false, isAtTop: window.pageYOffset < 50 }" @scroll.window="isAtTop = window.pageYOffset < 50" :class="{ 'bg-transparent': isAtTop && !isOpen, 'bg-[rgb(0,0,100)] shadow-lg': !isAtTop || isOpen }">
+	<header class="fixed top-0 left-0 right-0 text-white z-50" x-data="{ isOpen: false, isAtTop: window.pageYOffset < 50 }" @scroll.window="isAtTop = window.pageYOffset < 50" :class="{ 'bg-transparent': isAtTop && !isOpen, 'md:bg-transparent md:shadow-none shadow-lg bg-[rgb(0,0,100)]': isAtTop && isOpen, 'bg-[rgb(0,0,100)] shadow-lg': !isAtTop }">
 		<div class="md:container mx-auto px-2">
 			<div class="flex justify-between md:flex-row flex-col md:items-center py-2">
 				<div class="flex justify-between items-center">
